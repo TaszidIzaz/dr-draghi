@@ -4,8 +4,10 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const navigationItems = [{
     name: "Home",
     href: "/"
@@ -50,16 +52,18 @@ const Header = () => {
               <NavigationMenu>
                 <NavigationMenuList className="space-x-2">
                    {navigationItems.slice(0, -1).map((item, index) => <NavigationMenuItem key={item.name}>
-                      <NavigationMenuLink href={item.href} className="bg-transparent text-white hover:bg-white/20 hover:text-white px-4 py-2 rounded-md transition-colors duration-200" style={{
-                    animationDelay: `${0.3 + index * 0.05}s`
-                  }}>
-                        {item.name}
+                      <NavigationMenuLink asChild>
+                        <Link to={item.href} className="bg-transparent text-white hover:bg-white/20 hover:text-white px-4 py-2 rounded-md transition-colors duration-200" style={{
+                      animationDelay: `${0.3 + index * 0.05}s`
+                    }}>
+                          {item.name}
+                        </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>)}
                    <NavigationMenuItem>
                     <Button variant="default" className="bg-medical-navy text-white hover:bg-medical-navy/90 transition-all duration-300" style={{
                     animationDelay: `${0.3 + (navigationItems.length - 1) * 0.05}s`
-                  }} onClick={() => window.location.href = '/contact'}>
+                  }} onClick={() => navigate('/contact')}>
                       Contact
                     </Button>
                   </NavigationMenuItem>
@@ -80,12 +84,12 @@ const Header = () => {
                     <div className="flex items-center justify-between mb-6">
                       <h2 className="text-lg font-semibold text-medical-navy">Navigation</h2>
                     </div>
-                    {navigationItems.slice(0, -1).map(item => <a key={item.name} href={item.href} className="text-medical-navy hover:text-medical-navy/80 py-2 px-4 rounded-lg hover:bg-medical-navy/5 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
+                    {navigationItems.slice(0, -1).map(item => <Link key={item.name} to={item.href} className="text-medical-navy hover:text-medical-navy/80 py-2 px-4 rounded-lg hover:bg-medical-navy/5 transition-colors duration-200" onClick={() => setIsMobileMenuOpen(false)}>
                         {item.name}
-                      </a>)}
+                      </Link>)}
                     <Button className="bg-medical-navy text-white hover:bg-medical-navy/90 mt-4" onClick={() => {
                       setIsMobileMenuOpen(false);
-                      window.location.href = '/contact';
+                      navigate('/contact');
                     }}>
                       Contact
                     </Button>
