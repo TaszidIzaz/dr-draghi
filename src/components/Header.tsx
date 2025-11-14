@@ -35,7 +35,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-4 animate-fade-in">
               <div className="hover-scale transition-transform duration-300">
-                <img src="/lovable-uploads/4880f2f7-d8e9-4460-a84c-d8611568a458.png" alt="Dr Santiago Draghi Logo" className="h-16 w-auto" />
+                <img src="/lovable-uploads/draghi-logo.png" alt="Dr Santiago Draghi Logo" className="h-16 w-auto" />
               </div>
               <div className="block">
                 <h1 className="text-lg sm:text-xl font-semibold font-medical tracking-tight text-white">
