@@ -80,8 +80,16 @@ const LocationsSection = () => {
                     </h3>
                     {location.suite && <p className="text-white/80 font-medium">{location.suite}</p>}
                     {location.address && <p className="text-white/80 leading-relaxed font-normal">{location.address}</p>}
-                    {location.email && <p className="text-white/70 text-sm">{location.email}</p>}
-                    {location.phone && <p className="text-white/70 text-sm">{location.phone}</p>}
+                    {location.email && (
+                      <a href={`mailto:${location.email}`} className="text-white/70 text-sm hover:text-white transition-colors duration-200 block">
+                        {location.email}
+                      </a>
+                    )}
+                    {location.phone && (
+                      <a href={`tel:${location.phone.replace(/\s/g, '')}`} className="text-white/70 text-sm hover:text-white transition-colors duration-200 block">
+                        {location.phone}
+                      </a>
+                    )}
                     {location.providerNo && <p className="text-xs text-white/60">
                         Provider No: {location.providerNo}
                       </p>}

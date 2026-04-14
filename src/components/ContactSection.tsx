@@ -20,13 +20,21 @@ const ContactSection = () => {
     setIsSubmitting(true);
     try {
       // Initialize EmailJS with your public key
-      emailjs.init("YOUR_PUBLIC_KEY"); // You'll need to replace this with actual EmailJS public key
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
-      const result = await emailjs.sendForm('YOUR_SERVICE_ID',
-      // Replace with actual service ID
-      'YOUR_TEMPLATE_ID',
-      // Replace with actual template ID
-      formRef.current, 'YOUR_PUBLIC_KEY' // Replace with actual public key
+      if (!publicKey || !serviceId || !templateId) {
+        throw new Error("EmailJS configuration is missing. Please check your environment variables.");
+      }
+
+      emailjs.init(publicKey);
+
+      const result = await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current,
+        publicKey
       );
       toast({
         title: "Message Sent Successfully",
@@ -65,7 +73,9 @@ const ContactSection = () => {
                 <div className="flex items-center space-x-4 mb-4">
                   <Phone className="h-6 w-6 text-medical-gold" />
                   <div>
-                    <p className="text-lg font-medium text-medical-navy">PH: 02 8382 6080</p>
+                    <p className="text-lg font-medium text-medical-navy">
+                      PH: <a href="tel:0283826080" className="hover:text-medical-gold transition-colors duration-200">02 8382 6080</a>
+                    </p>
                     <p className="text-medical-steel">FAX: 02 4044 0129</p>
                   </div>
                 </div>
@@ -79,7 +89,9 @@ const ContactSection = () => {
                 </h3>
                 <div className="flex items-center space-x-4">
                   <Mail className="h-6 w-6 text-medical-gold" />
-                  <p className="text-medical-navy  text-lg">drsantiagodraghi@gmail.com</p>
+                  <a href="mailto:drsantiagodraghi@gmail.com" className="text-medical-navy text-lg hover:text-medical-gold transition-colors duration-200">
+                    drsantiagodraghi@gmail.com
+                  </a>
                 </div>
               </CardContent>
             </Card>

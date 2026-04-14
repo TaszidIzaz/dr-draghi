@@ -25,7 +25,11 @@ const HeroSection = () => {
                 <Phone className="h-5 w-5 text-medical-navy" />
                 <div className="text-left">
                   <p className="text-sm text-medical-steel font-medium">All appointments</p>
-                  <p className="font-semibold text-medical-navy text-base">02 8382 6080 / 02 8382 6085</p>
+                  <p className="font-semibold text-medical-navy text-base">
+                    <a href="tel:0283826080" className="hover:text-medical-gold transition-colors duration-200">02 8382 6080</a>
+                    {" / "}
+                    <a href="tel:0283826085" className="hover:text-medical-gold transition-colors duration-200">02 8382 6085</a>
+                  </p>
                 </div>
               </div>
               
@@ -33,7 +37,9 @@ const HeroSection = () => {
                 <Mail className="h-5 w-5 text-medical-navy" />
                 <div className="text-left">
                   <p className="text-sm text-medical-steel font-medium">Email</p>
-                  <p className="font-semibold text-medical-navy">drsantiagodraghi@gmail.com</p>
+                  <a href="mailto:drsantiagodraghi@gmail.com" className="font-semibold text-medical-navy hover:text-medical-gold transition-colors duration-200">
+                    drsantiagodraghi@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
